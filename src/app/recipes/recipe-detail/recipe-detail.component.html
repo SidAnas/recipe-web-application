@@ -1,0 +1,30 @@
+<section [ngClass.gt-sm]="{'mar-rec-det-gt-sm': true}">
+    <img [src]="recipe.imagePath" [alt]="recipe.name" [ngStyle.gt-sm]="{'height.px': 300}" [ngStyle.gt-xs]="{'height.px': 250}" [ngStyle.lt-sm]="{'height.px': 180}">
+
+    <div fxLayout="row">
+        <h1 [ngStyle]="{'margin-top.rem': 1.5}">{{recipe.name}}</h1>
+    </div>
+
+    <div fxLayout="row">
+        <button [ngClass]="{'margin-menu-btn': true}" fxFlex.lt-sm="50" mat-raised-button [matMenuTriggerFor]="menu" color="primary">
+    <span>Manage Recipe</span>
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onAddToShoppingList()">To Shopping List</button>
+            <button mat-menu-item (click)="onEditRecipe()">Edit Recipe</button>
+            <button mat-menu-item>Delete Recipe</button>
+        </mat-menu>
+    </div>
+
+    <div fxLayout="row">
+        <p>{{recipe.description}}</p>
+    </div>
+
+    <div fxLayout="row">
+        <!-- <p>Ingridents</p> -->
+        <mat-selection-list fxFlexFill [multiple]="false">
+            <mat-list-option *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}} - ({{ingredient.amount}})</mat-list-option>
+        </mat-selection-list>
+    </div>
+</section>

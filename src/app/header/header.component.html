@@ -1,0 +1,24 @@
+<mat-toolbar fxLayoutAlign="space-around center">
+    <span fxFlex="15" fxFlex.sm="25" fxFlex.lt-sm="80">Recipe Book</span>
+    <div fxFlex="60" fxHide.lt-sm>
+        <button mat-button (click)="onRecipeRoute()">Recipe</button>
+        <button mat-button fxFlexOffset="3%" (click)="onShoppingListRoute()">Shopping List</button>
+    </div>
+    <div fxFlex="20" fxLayoutAlign="center center" fxLayoutAlign.lt-sm="end center">
+        <button mat-button [matMenuTriggerFor]="menu" fxHide.lt-sm fxShow.gt-xs>
+        <span>Manage</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" fxShow.lt-sm fxHide.gt-xs>
+        <mat-icon>more_vert</mat-icon>
+    </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>Save Data</button>
+            <button mat-menu-item>Fetch Data</button>
+        </mat-menu>
+    </div>
+</mat-toolbar>
+<mat-toolbar fxLayoutAlign="space-evenly end" fxShow.lt-sm fxHide.gt-xs>
+    <button mat-button (click)="onRecipeRoute()">Recipe</button>
+    <button mat-button (click)="onShoppingListRoute()">Shopping List</button>
+</mat-toolbar>

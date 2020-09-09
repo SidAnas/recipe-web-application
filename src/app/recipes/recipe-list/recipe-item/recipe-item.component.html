@@ -1,0 +1,9 @@
+<button fxFlexFill mat-raised-button (click)="loadRecipe()">
+  <div fxFlex="70">
+    <p>{{recipe.name}}</p>
+    <p>{{recipe.description}}</p>
+  </div>
+  <div fxFlex="30" fxLayoutAlign="center center">
+    <img [src]="recipe.imagePath" height="50px">
+  </div>
+</button>

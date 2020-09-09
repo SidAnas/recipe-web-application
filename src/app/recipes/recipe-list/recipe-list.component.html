@@ -1,0 +1,46 @@
+<div fxLayout="row">
+    <button [ngClass]="{'margin-new-rec-btn': true}" fxFlex.lt-sm="50" mat-raised-button color="primary" (click)="onNewRecipe()">New Recipe</button>
+</div>
+<mat-divider></mat-divider>
+<div class="recipe-list-group" fxLayout="column" fxLayoutGap="5%">
+    <app-recipe-item *ngFor="let recipeEle of recipes; let i=index" [index]="i" [recipe]="recipeEle"></app-recipe-item>
+    <!-- <button fxFlexFill mat-raised-button *ngFor="let recipe of recipes">
+  <div fxFlex="70">
+    <p>{{recipe.name}}</p>
+    <p>{{recipe.description}}</p>
+  </div>
+  <div fxFlex="30" fxLayoutAlign="center center">
+    <img [src]="recipe.imagePath" height="50px">
+  </div>
+</button> -->
+    <!-- <mat-divider></mat-divider>
+  <button fxFlexFill mat-raised-button>
+  <div fxFlex="70">
+    <p>Food</p>
+    <p>Description</p>
+  </div>
+  <div fxFlex="30" fxLayoutAlign="center center">
+    <img src="https://wallpapercave.com/wp/wp3138446.jpg" height="50px">
+  </div>
+</button>
+  <mat-divider></mat-divider>
+  <button fxFlexFill mat-raised-button>
+  <div fxFlex="70">
+    <p>Food</p>
+    <p>Description</p>
+  </div>
+  <div fxFlex="30" fxLayoutAlign="center center">
+    <img src="https://wallpapercave.com/wp/wp3138449.jpg" height="50px">
+  </div>
+</button>
+  <mat-divider></mat-divider>
+  <button fxFlexFill mat-raised-button>
+  <div fxFlex="70">
+    <p>Juice</p>
+    <p>Description</p>
+  </div>
+  <div fxFlex="30" fxLayoutAlign="center center">
+    <img src="https://wallpapercave.com/wp/wp4485471.jpg" height="50px">
+  </div>
+</button> -->
+</div>
