@@ -3,7 +3,7 @@
 <mat-divider></mat-divider>
 
 <mat-selection-list [multiple]="false">
-    <mat-list-option *ngFor="let ingredient of ingredients; let i=index">{{ingredient.name}} - ({{ingredient.amount}})</mat-list-option>
+    <mat-list-option (click)="onEditItem(i)" *ngFor="let ingredient of ingredients; let i=index">{{ingredient.name}} - ({{ingredient.amount}})</mat-list-option>
     <!-- <mat-list-option>Mango (50)</mat-list-option>
     <mat-list-option>Grapes (25)</mat-list-option>
     <mat-list-option>Banana (30)</mat-list-option> -->
