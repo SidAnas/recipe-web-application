@@ -16,13 +16,23 @@
         <p fxFlex.gt-sm="30" fxFlex.gt-md="25" fxFlex.lt-sm="100">
             <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
-                <input matInput placeholder="Name..." name="name" ngModel required>
+                <input type="text" matInput placeholder="Name..." name="name" #name="ngModel" ngModel required>
+                <mat-hint *ngIf="!name.valid && name.touched">
+                    <span *ngIf="name.errors['required']">
+          This field is required
+        </span>
+                </mat-hint>
             </mat-form-field>
         </p>
         <p fxFlex.gt-sm="30" fxFlex.gt-md="25" fxFlex.lt-sm="100">
             <mat-form-field appearance="outline">
                 <mat-label>Amount</mat-label>
-                <input matInput placeholder="Amount..." name="amount" ngModel required pattern="^[1-9]+[0-9]*$">
+                <input type="number" matInput placeholder="Amount..." name="amount" #amount="ngModel" ngModel required pattern="^[1-9]+[0-9]*$">
+                <mat-hint *ngIf="!amount.valid && amount.touched">
+                    <span *ngIf="amount.errors['required']">
+          This field is required
+        </span>
+                </mat-hint>
             </mat-form-field>
         </p>
     </div>

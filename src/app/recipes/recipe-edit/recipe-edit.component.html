@@ -10,13 +10,24 @@
             <p>
                 <mat-form-field fxFlex="100" appearance="outline">
                     <mat-label>Name</mat-label>
-                    <input matInput placeholder="Recipe name..." formControlName="name">
+                    <input type="text" matInput placeholder="Recipe name..." formControlName="name">
+                    <mat-hint *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched">
+                        <span *ngIf="recipeForm.get('name').errors['required']">
+                This field is required
+              </span>
+                    </mat-hint>
                 </mat-form-field>
             </p>
+
             <p>
                 <mat-form-field fxFlex="100" appearance="outline">
                     <mat-label>Image URL</mat-label>
-                    <input matInput placeholder="Image URL..." formControlName="imagePath" #imagePath>
+                    <input type="url" matInput placeholder="Image URL..." formControlName="imagePath" #imagePath>
+                    <mat-hint *ngIf="!recipeForm.get('imagePath').valid && recipeForm.get('imagePath').touched">
+                        <span *ngIf="recipeForm.get('imagePath').errors['required']">
+              This field is required
+            </span>
+                    </mat-hint>
                 </mat-form-field>
             </p>
             <p *ngIf="imagePath.value">
@@ -26,17 +37,22 @@
                 <mat-form-field fxFlex="100" appearance="outline">
                     <mat-label>Description</mat-label>
                     <textarea rows="6" matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
+                    <mat-hint *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched">
+                        <span *ngIf="recipeForm.get('description').errors['required']">
+              This field is required
+            </span>
+                    </mat-hint>
                 </mat-form-field>
             </p>
             <div formArrayName="ingredients">
                 <div *ngFor="let ingredients of controls; let i=index" [formGroupName]="i">
                     <mat-form-field fxFlex="60" fxFlex.lt-sm="50" appearance="outline">
                         <mat-label>Name</mat-label>
-                        <input matInput placeholder="Recipe name..." formControlName="name">
+                        <input type="text" matInput placeholder="Recipe name..." formControlName="name">
                     </mat-form-field>
                     <mat-form-field fxFlex="20" fxFlex.lt-sm="25" appearance="outline" fxFlexOffset="20px">
                         <mat-label>Amount</mat-label>
-                        <input matInput placeholder="Amount..." formControlName="amount">
+                        <input type="number" matInput placeholder="Amount..." formControlName="amount">
                     </mat-form-field>
                     <button (click)="onDeleteIngredients(i)" [ngStyle]="{'margin-top.px': 10}" mat-mini-fab color="warn" fxFlexOffset="20px">
             <mat-icon>clear</mat-icon>
