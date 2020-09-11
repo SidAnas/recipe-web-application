@@ -1,1 +1,53 @@
-<p>recipe-edit works!</p>
+<mat-divider fxShow.lt-md fxHide.gt-sm></mat-divider>
+
+<div [ngStyle.gt-sm]="{'margin.px': 15}" [ngStyle.lt-md]="{'margin-top.px': 15}">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+        <div fxLayout="row" fxLayoutGap="30px" [ngStyle]="{'margin-bottom.px': 10}">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!recipeForm.valid">Save</button>
+            <button mat-raised-button color="warn" type="button" (click)="onClear()">Cancel</button>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-around" [ngStyle]="{'margin-top.px': 15}">
+            <p>
+                <mat-form-field fxFlex="100" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Recipe name..." formControlName="name">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field fxFlex="100" appearance="outline">
+                    <mat-label>Image URL</mat-label>
+                    <input matInput placeholder="Image URL..." formControlName="imagePath" #imagePath>
+                </mat-form-field>
+            </p>
+            <p *ngIf="imagePath.value">
+                <img [src]="imagePath.value" alt="" [ngStyle.gt-sm]="{'height.px': 300}" [ngStyle.gt-xs]="{'height.px': 250}" [ngStyle.lt-sm]="{'height.px': 180}">
+            </p>
+            <p>
+                <mat-form-field fxFlex="100" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea rows="6" matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
+                </mat-form-field>
+            </p>
+            <div formArrayName="ingredients">
+                <div *ngFor="let ingredients of controls; let i=index" [formGroupName]="i">
+                    <mat-form-field fxFlex="60" fxFlex.lt-sm="50" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Recipe name..." formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="20" fxFlex.lt-sm="25" appearance="outline" fxFlexOffset="20px">
+                        <mat-label>Amount</mat-label>
+                        <input matInput placeholder="Amount..." formControlName="amount">
+                    </mat-form-field>
+                    <button (click)="onDeleteIngredients(i)" [ngStyle]="{'margin-top.px': 10}" mat-mini-fab color="warn" fxFlexOffset="20px">
+            <mat-icon>clear</mat-icon>
+          </button>
+                </div>
+
+            </div>
+
+        </div>
+        <div fxLayout="row">
+            <button mat-raised-button color="primary" type="button" (click)="onAddIngredients()">Add Ingredients</button>
+        </div>
+    </form>
+</div>
