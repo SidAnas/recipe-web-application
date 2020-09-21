@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { DataStorageService } from '../../app/shared/data-storage.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +21,14 @@ export class HeaderComponent implements OnInit {
 
   onShoppingListRoute(): void{
     this.router.navigate(['/shopping-list']);
+  }
+
+  onSaveRecipes(): void{
+    this.dataStorageService.storeRecipes();
+  }
+
+  onFetchRecipes(): void{
+    this.dataStorageService.fetchRecipes().subscribe();
   }
 
 }

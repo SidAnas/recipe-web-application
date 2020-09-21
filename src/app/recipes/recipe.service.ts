@@ -11,26 +11,31 @@ export class RecipeService {
 
   recipesChanged = new Subject<Recipe[]>();
 
-  recipes: Recipe[] = [
-    new Recipe('Milk Shake', 'Two glasses of Milk Shake', 'https://wallpapercave.com/wp/wp2000261.jpg', [
-      new Ingredient('Milk', 1),
-      new Ingredient('Chocolate', 5)
-    ]),
-    new Recipe('Pasta', 'A bowl of Pasta with salad', 'https://wallpapercave.com/wp/wp3138446.jpg', [
-      new Ingredient('Pasta', 6),
-      new Ingredient('Onion', 2)
-    ]),
-    new Recipe('Lunch', 'A Lunch with Ice-Cream', 'https://wallpapercave.com/wp/wp3138449.jpg', [
-      new Ingredient('French Fries', 50),
-      new Ingredient('Ice-Cream', 2)
-    ]),
-    new Recipe('Juice', 'Juice with some Fruits', 'https://wallpapercave.com/wp/wp4485471.jpg', [
-      new Ingredient('Orange', 6),
-      new Ingredient('Lichi', 1)
-    ]),
+  private recipes: Recipe[] = [
+    // new Recipe('Milk Shake', 'Two glasses of Milk Shake', 'https://wallpapercave.com/wp/wp2000261.jpg', [
+    //   new Ingredient('Milk', 1),
+    //   new Ingredient('Chocolate', 5)
+    // ]),
+    // new Recipe('Pasta', 'A bowl of Pasta with salad', 'https://wallpapercave.com/wp/wp3138446.jpg', [
+    //   new Ingredient('Pasta', 6),
+    //   new Ingredient('Onion', 2)
+    // ]),
+    // new Recipe('Lunch', 'A Lunch with Ice-Cream', 'https://wallpapercave.com/wp/wp3138449.jpg', [
+    //   new Ingredient('French Fries', 50),
+    //   new Ingredient('Ice-Cream', 2)
+    // ]),
+    // new Recipe('Juice', 'Juice with some Fruits', 'https://wallpapercave.com/wp/wp4485471.jpg', [
+    //   new Ingredient('Orange', 6),
+    //   new Ingredient('Lichi', 1)
+    // ]),
   ];
 
   constructor(private slService: ShoppingListService) { }
+
+  setRecipes(recipes: Recipe[]): void{
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes);
+  }
 
   getRecipes(): Recipe[]{
     return this.recipes.slice();

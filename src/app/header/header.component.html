@@ -13,8 +13,8 @@
         <mat-icon>more_vert</mat-icon>
     </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>Save Data</button>
-            <button mat-menu-item>Fetch Data</button>
+            <button mat-menu-item (click)="onSaveRecipes()">Save Data</button>
+            <button mat-menu-item (click)="onFetchRecipes()">Fetch Data</button>
         </mat-menu>
     </div>
 </mat-toolbar>
