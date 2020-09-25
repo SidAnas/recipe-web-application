@@ -1,5 +1,9 @@
+<mat-card [ngStyle]="{'margin-bottom': '2rem', 'text-align': 'center'}" *ngIf="error">{{error}}</mat-card>
+
 <div fxLayout="row" fxLayoutAlign="center center">
-    <mat-card [ngClass.xs]="{'mat-card-cls-xs': true}" [ngClass.sm]="{'mat-card-cls-sm': true}" fxFlex.gt-sm="50" fxFlex.gt-xs="80" fxFlex.lt-sm="90">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+    <mat-card *ngIf="!isLoading" [ngClass.xs]="{'mat-card-cls-xs': true}" [ngClass.sm]="{'mat-card-cls-sm': true}" fxFlex.gt-sm="50" fxFlex.gt-xs="80" fxFlex.lt-sm="90">
         <p [ngClass]="{'size' : 'true'}" [ngStyle]="{'text-align': 'center'}">
             {{isLoginMode ? 'Login' : 'Sign Up'}}
         </p>
@@ -25,13 +29,13 @@
             <p>
                 <mat-form-field fxFlexOffset.gt-xs="10" fxFlex.xs="100" fxFlex.gt-xs="80" appearance="outline">
                     <mat-label>Enter your Password</mat-label>
-                    <input formControlName="password" matInput placeholder="Enter password...">
+                    <input type="password" formControlName="password" matInput placeholder="Enter password...">
                     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <!-- <mat-hint>Hint</mat-hint> -->
                     <mat-hint *ngIf="!authForm.get('password').valid && authForm.get('password').touched">
                         <span *ngIf="authForm.get('password').errors['required']">
-                        This field is required
-                        </span>
+              This field is required
+            </span>
                     </mat-hint>
                 </mat-form-field>
             </p>
@@ -39,7 +43,8 @@
                 <button mat-raised-button color="primary" type="submit" fxFlexOffset.xs="20" fxFlexOffset.gt-xs="25" fxFlex.xs="60" fxFlex.gt-xs="50" [disabled]="!authForm.valid">{{isLoginMode ? 'Login' : 'Sign Up'}}</button>
             </p>
             <p>
-                <button mat-raised-button color="primary" type="button" fxFlexOffset.xs="20" fxFlexOffset.gt-xs="25" fxFlex.xs="60" fxFlex.gt-xs="50" (click)="onSwitchMode()">Switch to {{isLoginMode ? 'Sign Up' : 'Login'}}</button>
+                <button mat-raised-button color="primary" type="button" fxFlexOffset.xs="20" fxFlexOffset.gt-xs="25" fxFlex.xs="60" fxFlex.gt-xs="50" (click)="onSwitchMode()">Switch to
+          {{isLoginMode ? 'Sign Up' : 'Login'}}</button>
             </p>
         </form>
 

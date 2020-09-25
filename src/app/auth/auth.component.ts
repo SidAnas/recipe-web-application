@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,9 +11,11 @@ import { Router } from '@angular/router';
 export class AuthComponent implements OnInit {
 
   isLoginMode = true;
+  isLoading = false;
   authForm: FormGroup;
+  error: string = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -31,8 +34,32 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(): void{
-    console.log(this.authForm.value);
-    this.router.navigate(['/recipes']);
+    // console.log(this.authForm.value);
+
+    const email = this.authForm.value.email;
+    const password = this.authForm.value.password;
+
+    this.isLoading = true;
+
+    if (this.isLoginMode){
+      //
+    }else {
+      this.authService.signup(email, password).subscribe(responseData => {
+        console.log(responseData);
+        this.isLoading = false;
+        this.router.navigate(['/recipes']);
+      }, errorMessage => {
+        console.log('Form auth: ' + errorMessage);
+        this.isLoading = false;
+        // this.authService.errorMessage.next(errorMessage);
+        this.error = errorMessage;
+        // this.openDialog();
+      });
+    }
     this.authForm.reset();
   }
+
+
+
 }
+

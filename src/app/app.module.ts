@@ -23,6 +23,7 @@ import { RecipeService } from './recipes/recipe.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
