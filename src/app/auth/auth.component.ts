@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { AuthResponseData } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -15,9 +18,9 @@ export class AuthComponent implements OnInit {
   authForm: FormGroup;
   error: string = null;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
     this.initForm();
   }
 
@@ -34,32 +37,58 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(): void{
-    // console.log(this.authForm.value);
 
     const email = this.authForm.value.email;
     const password = this.authForm.value.password;
 
+    let authObs: Observable<AuthResponseData>;
+
     this.isLoading = true;
 
     if (this.isLoginMode){
-      //
-    }else {
-      this.authService.signup(email, password).subscribe(responseData => {
-        console.log(responseData);
-        this.isLoading = false;
-        this.router.navigate(['/recipes']);
-      }, errorMessage => {
-        console.log('Form auth: ' + errorMessage);
-        this.isLoading = false;
-        // this.authService.errorMessage.next(errorMessage);
-        this.error = errorMessage;
-        // this.openDialog();
-      });
+      authObs = this.authService.login(email, password);
+    }else{
+      authObs = this.authService.signup(email, password);
     }
+
+    authObs.subscribe(responseData => {
+      console.log(responseData);
+      this.isLoading = false;
+      this.router.navigate(['/recipes']);
+    }, error => {
+      console.log('Form auth: ' + error);
+      this.error = error;
+      this.authService.errorMessage.next(this.error);
+      this.isLoading = false;
+      this.openDialog();
+
+    });
+
     this.authForm.reset();
+  }
+
+  openDialog(): void{
+    this.dialog.open(DialogComponent);
   }
 
 
 
 }
 
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: '../auth/dialog/dialog.component.html'
+})
+export class DialogComponent implements OnInit{
+  error = 'An error occured!';
+
+  constructor(private authService: AuthService){}
+
+  ngOnInit(): void{
+    this.authService.errorMessage.subscribe(errorMessage => {
+      this.error = errorMessage;
+    });
+    console.log(this.error);
+  }
+}
