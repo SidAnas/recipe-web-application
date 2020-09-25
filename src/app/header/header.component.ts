@@ -23,6 +23,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/shopping-list']);
   }
 
+  onAuthRoute(): void{
+    this.router.navigate(['/auth']);
+  }
+
   onSaveRecipes(): void{
     this.dataStorageService.storeRecipes();
   }

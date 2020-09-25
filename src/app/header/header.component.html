@@ -1,8 +1,23 @@
 <mat-toolbar fxLayoutAlign="space-around center">
+    <!-- <mat-drawer-container class="example-container" fxShow.xs fxHide.gt-xs fxFlex.lt-sm="20">
+        <mat-drawer #drawer mode="over">
+            <div fxLayout="column" fxLayoutAlign=" none">
+                <button mat-button (click)="onRecipeRoute()">Recipe</button>
+                <button mat-button (click)="onShoppingListRoute()">Shopping List</button>
+                <button mat-button (click)="onAuthRoute()">Authenticate</button>
+            </div>
+        </mat-drawer>
+        <mat-drawer-content>
+            <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        </mat-drawer-content>
+    </mat-drawer-container> -->
     <span fxFlex="15" fxFlex.sm="25" fxFlex.lt-sm="80">Recipe Book</span>
     <div fxFlex="60" fxHide.lt-sm>
         <button mat-button (click)="onRecipeRoute()">Recipe</button>
         <button mat-button fxFlexOffset="3%" (click)="onShoppingListRoute()">Shopping List</button>
+        <button mat-button fxFlexOffset="3%" (click)="onAuthRoute()">Authenticate</button>
     </div>
     <div fxFlex="20" fxLayoutAlign="center center" fxLayoutAlign.lt-sm="end center">
         <button mat-button [matMenuTriggerFor]="menu" fxHide.lt-sm fxShow.gt-xs>
@@ -21,4 +36,5 @@
 <mat-toolbar fxLayoutAlign="space-evenly end" fxShow.lt-sm fxHide.gt-xs>
     <button mat-button (click)="onRecipeRoute()">Recipe</button>
     <button mat-button (click)="onShoppingListRoute()">Shopping List</button>
+    <button mat-button (click)="onAuthRoute()">Authenticate</button>
 </mat-toolbar>

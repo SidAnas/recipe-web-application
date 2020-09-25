@@ -11,11 +11,11 @@
                 <mat-form-field fxFlex="100" appearance="outline">
                     <mat-label>Name</mat-label>
                     <input type="text" matInput placeholder="Recipe name..." formControlName="name">
-                    <mat-hint *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched">
+                    <mat-error *ngIf="!recipeForm.get('name').valid && recipeForm.get('name').touched">
                         <span *ngIf="recipeForm.get('name').errors['required']">
                 This field is required
               </span>
-                    </mat-hint>
+                    </mat-error>
                 </mat-form-field>
             </p>
 
@@ -23,11 +23,11 @@
                 <mat-form-field fxFlex="100" appearance="outline">
                     <mat-label>Image URL</mat-label>
                     <input type="url" matInput placeholder="Image URL..." formControlName="imagePath" #imagePath>
-                    <mat-hint *ngIf="!recipeForm.get('imagePath').valid && recipeForm.get('imagePath').touched">
+                    <mat-error *ngIf="!recipeForm.get('imagePath').valid && recipeForm.get('imagePath').touched">
                         <span *ngIf="recipeForm.get('imagePath').errors['required']">
               This field is required
             </span>
-                    </mat-hint>
+                    </mat-error>
                 </mat-form-field>
             </p>
             <p *ngIf="imagePath.value">
@@ -37,11 +37,11 @@
                 <mat-form-field fxFlex="100" appearance="outline">
                     <mat-label>Description</mat-label>
                     <textarea rows="6" matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
-                    <mat-hint *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched">
+                    <mat-error *ngIf="!recipeForm.get('description').valid && recipeForm.get('description').touched">
                         <span *ngIf="recipeForm.get('description').errors['required']">
               This field is required
             </span>
-                    </mat-hint>
+                    </mat-error>
                 </mat-form-field>
             </p>
             <div formArrayName="ingredients">

@@ -1,0 +1,17 @@
+.size {
+    font-size: 1.8rem;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    color: rgba(0, 0, 0, .87);
+    margin: 20px auto;
+    display: block;
+}
+
+
+/* .mat-card-cls-xs {
+    margin: 10% auto;
+}
+
+.mat-card-cls-sm {
+    margin: 6% auto;
+} */
