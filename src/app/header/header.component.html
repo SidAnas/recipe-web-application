@@ -16,12 +16,12 @@
     <span fxFlex="15" fxFlex.sm="25" fxFlex.lt-sm="80">Recipe Book</span>
     <div fxFlex="60" fxFlex.sm="50" fxHide.lt-sm>
         <button mat-button (click)="onRecipeRoute()" *ngIf="isAuthenticated">Recipe</button>
-        <button mat-button fxFlexOffset="3%" (click)="onShoppingListRoute()">Shopping List</button>
         <button mat-button fxFlexOffset="3%" (click)="onAuthRoute()" *ngIf="!isAuthenticated">Authenticate</button>
+        <button mat-button fxFlexOffset="3%" (click)="onShoppingListRoute()">Shopping List</button>
     </div>
 
     <div fxFlex="20" fxFlex.sm="30" fxLayoutAlign="center center" fxLayoutAlign.lt-sm="end center">
-        <button mat-button *ngIf="isAuthenticated" fxHide.lt-sm fxShow.gt-xs>
+        <button (click)="onLogout()" mat-button *ngIf="isAuthenticated" fxHide.lt-sm fxShow.gt-xs>
         <span>Logout</span>
         <!-- <mat-icon>account_circle</mat-icon> -->
       </button>
