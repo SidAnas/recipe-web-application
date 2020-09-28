@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 })
 export class RecipeService {
 
+  isZeroValue = new Subject<boolean>();
   recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
@@ -31,6 +32,7 @@ export class RecipeService {
   ];
 
   constructor(private slService: ShoppingListService) { }
+
 
   setRecipes(recipes: Recipe[]): void{
     this.recipes = recipes;
@@ -62,5 +64,13 @@ export class RecipeService {
   deleteRecipe(index: number): void{
     this.recipes.splice(index, 1);
     this.recipesChanged.next(this.recipes.slice());
+  }
+
+  isRecipeZero(){
+    if (this.recipes === []){
+      this.isZeroValue.next(true);
+    }else{
+      this.isZeroValue.next(false);
+    }
   }
 }

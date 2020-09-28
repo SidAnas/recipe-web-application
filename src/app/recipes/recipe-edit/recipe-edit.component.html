@@ -1,4 +1,4 @@
-<mat-divider fxShow.lt-md fxHide.gt-sm></mat-divider>
+<mat-divider fxShow.lt-md fxHide.gt-sm *ngIf="!isZero"></mat-divider>
 
 <div [ngStyle.gt-sm]="{'margin.px': 15}" [ngStyle.lt-md]="{'margin-top.px': 15}">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">

@@ -13,6 +13,7 @@ export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
   recipeForm: FormGroup;
+  isZero: boolean;
 
   constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router) { }
 
@@ -24,6 +25,12 @@ export class RecipeEditComponent implements OnInit {
         this.initForm();
       }
     );
+    this.recipeService.isZeroValue.subscribe(
+      isZero => {
+        this.isZero = isZero;
+      }
+    );
+    console.log(this.isZero);
   }
 
   get controls() { // a getter!

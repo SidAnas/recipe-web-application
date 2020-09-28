@@ -13,7 +13,10 @@
         </button>
         </mat-drawer-content>
     </mat-drawer-container> -->
-    <span fxFlex="15" fxFlex.sm="25" fxFlex.lt-sm="80">Recipe Book</span>
+    <button fxFlex.lt-sm="15" mat-icon-button [matMenuTriggerFor]="mainMenu" *ngIf="isAuthenticated" fxShow.lt-sm fxHide.gt-xs>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span fxFlex="15" fxFlex.sm="25" fxFlex.lt-sm="70" fxFlexOffset.lt-sm="10px">Recipe Book</span>
     <div fxFlex="60" fxFlex.sm="50" fxHide.lt-sm>
         <button mat-button (click)="onRecipeRoute()" *ngIf="isAuthenticated">Recipe</button>
         <button mat-button fxFlexOffset="3%" (click)="onAuthRoute()" *ngIf="!isAuthenticated">Authenticate</button>
@@ -25,14 +28,27 @@
         <span>Logout</span>
         <!-- <mat-icon>account_circle</mat-icon> -->
       </button>
-        <button mat-button [matMenuTriggerFor]="menu" *ngIf="isAuthenticated" fxHide.lt-sm fxShow.gt-xs>
+        <button mat-button [matMenuTriggerFor]="lgMenu" *ngIf="isAuthenticated" fxHide.lt-sm fxShow.gt-xs>
       <span>Manage</span>
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
-        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isAuthenticated" fxShow.lt-sm fxHide.gt-xs>
-      <mat-icon>more_vert</mat-icon>
-    </button>
-        <mat-menu #menu="matMenu">
+        <!-- <button mat-icon-button [matMenuTriggerFor]="mainMenu" *ngIf="isAuthenticated" fxShow.lt-sm fxHide.gt-xs>
+      <mat-icon>menu</mat-icon>
+    </button> -->
+        <mat-menu #lgMenu="matMenu">
+            <button mat-menu-item (click)="onSaveRecipes()">Save Data</button>
+            <button mat-menu-item (click)="onFetchRecipes()">Fetch Data</button>
+        </mat-menu>
+        <mat-menu #mainMenu="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="manageMenu">
+              Manage
+            </button>
+            <button mat-menu-item (click)="onLogout()">
+              Logout
+            </button>
+            <!-- <mat-icon>logout</mat-icon> -->
+        </mat-menu>
+        <mat-menu #manageMenu="matMenu">
             <button mat-menu-item (click)="onSaveRecipes()">Save Data</button>
             <button mat-menu-item (click)="onFetchRecipes()">Fetch Data</button>
         </mat-menu>
