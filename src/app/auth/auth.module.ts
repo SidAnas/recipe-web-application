@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AuthComponent } from './auth.component';
+import { DialogComponent } from './auth.component';
 
 const authRoute: Routes = [
   { path: '', component: AuthComponent }
@@ -10,7 +11,8 @@ const authRoute: Routes = [
 
 @NgModule({
   declarations: [
-    AuthComponent
+    AuthComponent,
+    DialogComponent
   ],
   imports: [
     SharedModule,

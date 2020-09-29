@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from './auth/auth.service';
+import { NavigationService } from './navigation.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,24 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent implements OnInit{
   title = 'recipe-web-application';
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private navService: NavigationService){}
 
   ngOnInit(): void{
     this.authService.autoLogin();
+    this.navService.openNav.subscribe(shouldOpen => {
+      this.sidenav.open();
+    });
   }
+
+  close() {
+    this.sidenav.close();
+  }
+
+  onLogout(): void{
+    this.close();
+    this.authService.logOut();
+  }
+
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { DataStorageService } from '../../app/shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   isAuthenticated = false;
 
-  constructor(private router: Router, private dataStorageService: DataStorageService, private authService: AuthService) { }
+  constructor(private router: Router, private dataStorageService: DataStorageService, private authService: AuthService, private navService: NavigationService) { }
 
   ngOnInit(): void {
     this.authService.user.subscribe(user => {
@@ -43,6 +44,10 @@ export class HeaderComponent implements OnInit {
 
   onLogout(): void{
     this.authService.logOut();
+  }
+
+  onOpenNav(): void{
+    this.navService.openNav.next(true);
   }
 
 }

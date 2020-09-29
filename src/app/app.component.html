@@ -1,5 +1,23 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <div [ngClass.gt-sm]="{'on-gt-sm': true}" [ngClass]="{'on-sm': true}">
     <router-outlet></router-outlet>
-</div>
-<app-footer></app-footer>
+</div>s
+<app-footer></app-footer> -->
+
+<mat-sidenav-container (backdropClick)="close()">
+    <mat-sidenav #sidenav>
+        <!-- <p><button mat-button (click)="close()">Toggle</button></p> -->
+        <button mat-menu-item (click)="onLogout()">
+          Logout
+        </button>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <!-- <p><button mat-button (click)="sidenav.open()">Open</button></p> -->
+        <app-header></app-header>
+        <div [ngClass.gt-sm]="{'on-gt-sm': true}" [ngClass]="{'on-sm': true}">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>
